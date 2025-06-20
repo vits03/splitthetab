@@ -1,0 +1,7 @@
+[[redirects]]
+  from = "/*"
+  to = "https://service.prerender.io/:splat"
+  status = 200
+  force = true
+  conditions = {User-Agent = ["googlebot", "bingbot", "yandex", "baiduspider", "facebookexternalhit", "twitterbot"]}
+  headers = { "X-Prerender-Token" = "P9mS7Q8qyGaydrniNKjE" }
