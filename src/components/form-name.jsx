@@ -30,36 +30,40 @@ const FormName = ({StoreUserNames,formData}) => {
 
         <>
         
-      <h1 className="text-2xl  mb-10 text-center text-[#E34234]">
-      Add your team
-    </h1>
-        <form onSubmit={handleSubmit}  id="names-form" className={formData.persons>=5?'mt-4 flex flex-col  grid-cols-2 text-gray-700  md:grid  gap-x-4':'mt-4 flex flex-col text-gray-700 grid-cols-2 gap-x-4'}>
-        <div className="h-5 mx-auto text-red-600">{errorMsg || ""}</div>
-        {
-  (formData.personsList).map((value, i) => (
-    <div className="form-group" key={i}>
-      <label htmlFor={`name-${i}`}>Metter Nissa no {i + 1}</label>
-      
-      <input
-        className="border rounded-4xl"
-        type="text"
-        id={`name-${i}`}
-        name={`name-${i}`}
-        maxLength="20"
-        required
-        
-        value={formData.personsList[i] }
-        onChange={(e) =>handleNameChange(e,i)}
-      />
-    </div>
-  ))
-}
+      <h1 className="text-2xl mb-10 text-center text-[#E34234]">
+  Add your team
+</h1>
 
-        
+<div className="h-5 mx-auto text-red-600">{errorMsg || ""}</div> {/* Moved here */}
 
-        
-      </form>
-      
+<form
+  onSubmit={handleSubmit}
+  id="names-form"
+  className={`mt-4 text-gray-700 gap-x-4 gap-y-3 ${
+    formData.persons >= 5
+      ? 'grid grid-cols-1 md:grid-cols-2'
+      : 'flex flex-col'
+  }`}
+>
+  {
+    formData.personsList.map((value, i) => (
+      <div className="form-group" key={i}>
+        <label htmlFor={`name-${i}`}>Metter Nissa no {i + 1}</label>
+        <input
+          className="border rounded-4xl w-full"
+          type="text"
+          id={`name-${i}`}
+          name={`name-${i}`}
+          maxLength="20"
+          required
+          value={value}
+          onChange={(e) => handleNameChange(e, i)}
+        />
+      </div>
+    ))
+  }
+</form>
+
       <div className="flex justify-between gap-4 mt-10"> {/* Reduced gap for better control */}
   <button onClick={()=>navigate("/")}
     className="w-1/4 rounded-2xl text-lg font-semibold bg-amber-600 py-3 hover:bg-amber-500 transition-all text-white"
